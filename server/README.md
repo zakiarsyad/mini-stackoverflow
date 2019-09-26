@@ -32,11 +32,11 @@ Response :
 
 ```
 {
-    "token": "........",
+    "token": "......",
     "user": {
-        "id": "5d8b1ff5fcca22cad566a901",
-        "email": "2@mail.com",
-        "name": "dua"
+        "userId": "5d8c93d53f78c7053132e579",
+        "email": "john@mail.com",
+        "name": "John"
     }
 }
 ```
@@ -47,10 +47,12 @@ Response :
 ```
 {
     "errors": [
+    		"Name is required!"
         "Email is required!",
-        "Email format is invalid!",
-        "Email is already registered!",
-        "Password is required!"
+        "Email is not a valid email!",
+        "Email has been registered!",
+        "Password is required!",
+        "Password must be more or equal than 8 character!"
     ]
 }
 ```
@@ -66,11 +68,11 @@ Response :
 
 ```
 {
-    "token": "........",
+    "token": "......",
     "user": {
-        "id": "5d8b1ff5fcca22cad566a901",
-        "email": "2@mail.com",
-        "name": "dua"
+        "userId": "5d8c93d53f78c7053132e579",
+        "email": "john@mail.com",
+        "name": "John"
     }
 }
 ```
@@ -97,10 +99,10 @@ Response :
 
 ```
 {
-    "userId": "5d8b230647f66ecb655a38d2",
-    "name": "zaki",
-    "email": "zaki@mail.com",
-    "iat": 1569400428
+    "userId": "5d8c93d53f78c7053132e579",
+    "name": "John",
+    "email": "john@mail.com",
+    "iat": 1569494154
 }
 ```
 
@@ -109,9 +111,9 @@ Response :
 
 ```
 {
-		"errors" : [
-				"Access token is invalid!"
-		]
+    "errors": [
+        "Access token is invalid!"
+    ]
 }
 ```
 
@@ -144,6 +146,53 @@ Response :
 ]
 ```
 
+Code : `501`  
+Response :
+
+```
+{
+    "errors": [
+        "Internal server error!"
+    ]
+}
+```
+
+### Get single question `GET /questions/:id`
+
+| Route            | HTTP  | Headers | Body   | Descrition            |      |
+| ---------------- | ----- | ------- | ------ | --------------------- | ---- |
+| `/questions/:id` | `GET` | `none`  | `none` | get a single question |      |
+
+Code : `200`  
+Response :
+
+```
+{
+    "upvote": [],
+    "downvote": [],
+    "answer": [],
+    "tag": [],
+    "_id": "5d8b2677fa7a8ecc587c910f",
+    "title": "mau nanya dong gan",
+    "description": "gimana caranya bikin aplikasi dalam 30 detik",
+    "userId": "5d8b230647f66ecb655a38d2",
+    "createdAt": "2019-09-25T08:33:59.848Z",
+    "updatedAt": "2019-09-25T08:33:59.848Z",
+    "__v": 0
+}
+```
+
+Code : `501`  
+Response :
+
+```
+{
+    "errors": [
+        "Internal server error!"
+    ]
+}
+```
+
 ### Get by keyword `GET /questions/search/:keyword`
 
 | Route                        | HTTP  | Headers | Body   | Descrition                   |      |
@@ -171,6 +220,17 @@ Response :
 ]
 ```
 
+Code : `501`  
+Response :
+
+```
+{
+    "errors": [
+        "Internal server error!"
+    ]
+}
+```
+
 ### Create a question `POST /questions`
 
 | Route        | HTTP   | Headers        | Body                               | Descrition            |                         |
@@ -196,39 +256,14 @@ Response :
 }
 ```
 
-Status : `401`
+Status : `403`
 Response :
 
 ```
 {
     "errors": [
-        "You are not authorized!"
+        "Please login first"
     ]
-}
-```
-
-###Get single question `GET /questions/:id`
-
-| Route            | HTTP  | Headers | Body   | Descrition            |      |
-| ---------------- | ----- | ------- | ------ | --------------------- | ---- |
-| `/questions/:id` | `GET` | `none`  | `none` | get a single question |      |
-
-Code : `200`  
-Response :
-
-```
-{
-    "upvote": [],
-    "downvote": [],
-    "answer": [],
-    "tag": [],
-    "_id": "5d8b2677fa7a8ecc587c910f",
-    "title": "mau nanya dong gan",
-    "description": "gimana caranya bikin aplikasi dalam 30 detik",
-    "userId": "5d8b230647f66ecb655a38d2",
-    "createdAt": "2019-09-25T08:33:59.848Z",
-    "updatedAt": "2019-09-25T08:33:59.848Z",
-    "__v": 0
 }
 ```
 
@@ -260,6 +295,17 @@ Response :
 }
 ```
 
+Status : `403`
+Response :
+
+```
+{
+    "errors": [
+        "Please login first"
+    ]
+}
+```
+
 ###Downvote a question `PATCH /questions/:id/downvote`
 
 | Route                     | HTTP    | Headers        | Body   | Descrition                    |                         |
@@ -288,30 +334,15 @@ Response :
 }
 ```
 
-###Get all answer for one question `GET /questions/:id/answer`
-
-| Route                   | HTTP  | Headers        | Body   | Descrition                 |                         |
-| ----------------------- | ----- | -------------- | ------ | -------------------------- | ----------------------- |
-| `/questions/:id/answer` | `GET` | `token:String` | `none` | Get all questions's answer | Authentication required |
-
-Code : `200`  
+Status : `403`
 Response :
 
 ```
-[
-		{
-        "title" : ""
-        "description" : ""
-        "upvote" : [
-            { userId }
-        ]
-        "downvote" : [
-            { userId }
-        ]
-    		"createdAt" : ""
-    		"updatedAt" : ""
-		}
-]
+{
+    "errors": [
+        "Please login first"
+    ]
+}
 ```
 
 ### Edit a question `PATCH /questions/:id`
@@ -339,6 +370,17 @@ Response :
     "userId" : ""
     "createdAt" : ""
     "updatedAt" : ""
+}
+```
+
+Status : `403`
+Response :
+
+```
+{
+    "errors": [
+        "Please login first"
+    ]
 }
 ```
 
@@ -381,7 +423,18 @@ Response :
 }
 ```
 
-### Status : `401`
+Status : `403`
+Response :
+
+```
+{
+    "errors": [
+        "Please login first"
+    ]
+}
+```
+
+Status : `401`
 Response :
 
 ```
@@ -391,8 +444,6 @@ Response :
     ]
 }
 ```
-
-### 
 
 ##List of Answer router
 
@@ -420,6 +471,17 @@ Response :
 }
 ```
 
+Status : `403`
+Response :
+
+```
+{
+    "errors": [
+        "Please login first"
+    ]
+}
+```
+
 ### Get an answer `GET /answers/:id`
 
 | Route          | HTTP  | Headers        | Body   | Descrition                        |      |
@@ -441,6 +503,17 @@ Response :
 		]
 		"createdAt" : ""
 		"updatedAt" : ""
+}
+```
+
+Code : `501`  
+Response :
+
+```
+{
+    "errors": [
+        "Internal server error!"
+    ]
 }
 ```
 
@@ -468,6 +541,17 @@ Response :
 }
 ```
 
+Status : `403`
+Response :
+
+```
+{
+    "errors": [
+        "Please login first"
+    ]
+}
+```
+
 ###Downvote a question `PATCH /answers/:id/downvote`
 
 | Route                   | HTTP    | Headers        | Body   | Descrition                   |                         |
@@ -492,6 +576,17 @@ Response :
 }
 ```
 
+Status : `403`
+Response :
+
+```
+{
+    "errors": [
+        "Please login first"
+    ]
+}
+```
+
 ### Edit an answer `PATCH /answers/:id`
 
 | Route          | HTTP    | Headers        | Body                 | Descrition           |                                           |
@@ -513,6 +608,17 @@ Response :
 		]
 		"createdAt" : ""
 		"updatedAt" : ""
+}
+```
+
+Status : `403`
+Response :
+
+```
+{
+    "errors": [
+        "Please login first"
+    ]
 }
 ```
 
@@ -548,6 +654,17 @@ Response :
 		]
 		"createdAt" : ""
 		"updatedAt" : ""
+}
+```
+
+Status : `403`
+Response :
+
+```
+{
+    "errors": [
+        "Please login first"
+    ]
 }
 ```
 

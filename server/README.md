@@ -110,7 +110,34 @@ Response :
 ]
 ```
 
-###Create a question `POST /questions`
+### Get by keyword `GET /questions/search/:keyword`
+
+| Route                        | HTTP  | Headers | Body   | Descrition                   |      |
+| ---------------------------- | ----- | ------- | ------ | ---------------------------- | ---- |
+| `/questions/search/:keyword` | `GET` | `none`  | `none` | Get all questions by keyword |      |
+
+Code : `200`  
+Response :
+
+```
+[
+    {
+        "upvote": [],
+        "downvote": [],
+        "answer": [],
+        "tag": [],
+        "_id": "5d8b2649fa7a8ecc587c910e",
+        "title": "mau nanya dong gan",
+        "description": "gimana caranya bikin aplikasi dalam 30 detik",
+        "userId": "5d8b1ff5fcca22cad566a901",
+        "createdAt": "2019-09-25T08:33:13.593Z",
+        "updatedAt": "2019-09-25T08:33:13.593Z",
+        "__v": 0
+    }
+]
+```
+
+### Create a question `POST /questions`
 
 | Route        | HTTP   | Headers        | Body                               | Descrition            |                         |
 | ------------ | ------ | -------------- | ---------------------------------- | --------------------- | ----------------------- |
@@ -400,9 +427,9 @@ Response :
 
 ### Edit an answer `PATCH /answers/:id`
 
-| Route          | HTTP    | Headers        | Body                               | Descrition           |                                           |
-| -------------- | ------- | -------------- | ---------------------------------- | -------------------- | ----------------------------------------- |
-| `/answers/:id` | `PATCH` | `token:String` | `title:String, description:String` | Edit a single answer | Authentication and authorization required |
+| Route          | HTTP    | Headers        | Body                 | Descrition           |                                           |
+| -------------- | ------- | -------------- | -------------------- | -------------------- | ----------------------------------------- |
+| `/answers/:id` | `PATCH` | `token:String` | `description:String` | Edit a single answer | Authentication and authorization required |
 
 Code : `200`  
 Response :

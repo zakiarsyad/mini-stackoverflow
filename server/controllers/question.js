@@ -119,6 +119,16 @@ class QuestionController {
             })
             .catch(next)
     }
+
+    static search(req, res, next) {
+        const keyword = req.params.keyword.toLowerCase()
+
+        Question.find({ tags: { $regex: keyword, $options: 'i' } })
+            .then(questions => {
+                res.status(200).json(questions)
+            })
+            .catch(next)        
+    }
 }
 
 module.exports = QuestionController

@@ -17,7 +17,7 @@
                         <p v-html="answer.description"></p>
                     </div>
                     <button 
-                        @click.prevent="saveQuestion"
+                        @click.prevent="saveAnswer"
                         class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded text-xs mt-6">
                         Save Edits
                     </button>
@@ -43,6 +43,10 @@ export default {
     methods: {
         getAnswer() {
             this.$store.dispatch('getAnswer', this.$router.currentRoute.params.id)
+        },
+        saveAnswer() {
+            console.log(this.answer);
+            this.$store.dispatch('saveAnswer', this.answer)
         }
     },
     created: function () {

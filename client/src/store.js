@@ -352,6 +352,32 @@ export default new Vuex.Store({
                     commit('STOP_LOADING')
                 })
         },
+        saveAnswer({ commit, state, dispatch }, payload) {
+            commit('START_LOADING')
+
+            axios({
+                method: `patch`,
+                url: `${state.server}/answers/${payload._id}`,
+                headers: {
+                    token: localStorage.getItem('token')
+                },
+                data: payload
+            })
+                .then(({ data }) => {
+                    // console.log(data);
+                    Vue.$toast.open('success update an answer')
+                    router.push(`/questions/${state.question._id}`)
+                })
+                .catch(err => {
+                    console.log(err.response.data.errors);
+                    err.response.data.errors.forEach(error => {
+                        Vue.$toast.warning(error)
+                    })
+                })
+                .finally(() => {
+                    commit('STOP_LOADING')
+                })
+        },
         deleteAnswer({ commit, state, dispatch }, payload) {
             commit('START_LOADING')
 
@@ -399,6 +425,26 @@ export default new Vuex.Store({
                 .finally(() => {
                     commit('STOP_LOADING')
                 })
-        }
+        },
+        searchByTag({ commit, state, dispatch }, payload) {
+            commit('START_LOADING')
+
+            axios({
+                method: `get`,
+                url: `${state.server}/questions/search/${payload}`
+            })
+                .then(({ data }) => {
+                    commit('GET_QUESTIONS', data)
+                })
+                .catch(err => {
+                    console.log(err.response.data.errors);
+                    err.response.data.errors.forEach(error => {
+                        Vue.$toast.warning(error)
+                    })
+                })
+                .finally(() => {
+                    commit('STOP_LOADING')
+                })
+        },
     }
 })

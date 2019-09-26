@@ -73,12 +73,11 @@ class AnswerController {
 
     static update(req, res, next) {
         const { id } = req.params
-        const { title, description } = req.body
+        const { description } = req.body
 
         Answer.findById(id)
             .then(answer => {
-                if (title) answer.title = title
-                if (description) answer.description = description
+                answer.description = description
                 return answer.save()
             })
             .then(answer => {

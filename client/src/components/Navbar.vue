@@ -23,8 +23,10 @@
                 </button>
                 <div class="h-full py-2 w-full">
                     <input 
-                    class="border rounded h-full w-full px-3"
-                    type="text">
+                        @keyup.enter="searchByTag"
+                        v-model="keyword"
+                        class="border rounded h-full w-full px-3"
+                        type="text">
                 </div>
                 <div class="flex items-center">
                     <p class="w-32 ml-4" >Hi, {{ $store.state.user.name }}</p>
@@ -43,6 +45,11 @@
 <script>
 export default {
     name: 'navbar',
+    data() {
+        return {
+            keyword: ''
+        }
+    },
     methods: {
         goToHome() {
             this.$router.push('/')
@@ -55,7 +62,11 @@ export default {
             this.$store.commit('LOGOUT')
             this.$router.push('/auth/signin')
         },
-
+        searchByTag() {
+            // console.log(this.keyword);
+            this.$store.dispatch('searchByTag', this.keyword)
+            this.keyword = ''
+        }
     }
 }
 </script>

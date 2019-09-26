@@ -54,7 +54,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 * {
     background-color: #fcfcfc;
     font-family: Arial;

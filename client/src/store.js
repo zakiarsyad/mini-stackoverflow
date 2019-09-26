@@ -10,6 +10,7 @@ export default new Vuex.Store({
         user: {},
         isLoading: false,
         server: 'http://18.191.104.241',
+        // server: 'http://localhost:3000',
         questions: [],
         question: {},
         answer: {}

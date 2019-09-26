@@ -1,5 +1,5 @@
 <template>
-    <div class="h-screen">
+    <div class="">
         <loading 
             :active.sync="$store.state.isLoading" 
             :is-full-page="true">

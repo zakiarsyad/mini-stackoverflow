@@ -4,6 +4,7 @@ const QuestionController = require('../controllers/question')
 const { questionAuth, authentication } = require('../middlewares/auth')
 
 router.get('/', QuestionController.getAll)
+router.get('/top', QuestionController.getTop)
 router.get('/:id', QuestionController.getById)
 router.get('/search/:keyword', QuestionController.search)
 

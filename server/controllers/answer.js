@@ -26,7 +26,7 @@ class AnswerController {
     static getAnswer(req, res, next) {
         const { id } = req.params
 
-        Answer.findById(id)
+        Answer.findById(id).populate('userId')
             .then(answer => {
                 res.status(200).json(answer)
             })

@@ -26,16 +26,16 @@
                     <a 
                         @click.prevent="goToEditAnswer"
                         href="#"
-                        v-if="$store.state.question.userId._id === $store.state.user.userId"
+                        v-if="answer.userId._id === $store.state.user.userId"
                         class="text-xs pr-4 hover:text-gray-900 text-gray-500">edit</a>
                     <a  
                         @click.prevent="deleteAnswer"
                         href="#"
-                        v-if="$store.state.question.userId._id === $store.state.user.userId"
+                        v-if="answer.userId._id === $store.state.user.userId"
                         class="text-xs pr-4 hover:text-gray-900 text-gray-500">delete</a>
                     <a 
                         href="#"
-                        v-if="$store.state.question.userId._id === $store.state.user.userId"
+                        v-if="answer.userId._id === $store.state.user.userId"
                         class="text-xs pr-4 hover:text-gray-900 text-gray-500">flag</a>
                 </div>
                 <div class="flex">

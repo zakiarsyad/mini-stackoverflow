@@ -9,8 +9,10 @@ const errorHandler = require('./middlewares/errorHandler')
 
 const app = express()
 const PORT = process.env.PORT || 3000
+const ATLAS_CONNECT = process.env.ATLAS_CONNECT
+// const ATLAS_CONNECT = 'mongodb://localhost:27017/hoverflow'
 
-mongoose.connect('mongodb://localhost:27017/hoverflow', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(ATLAS_CONNECT, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(function () {
         console.log(`connection success`)
     })

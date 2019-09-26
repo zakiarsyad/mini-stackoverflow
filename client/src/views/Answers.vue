@@ -78,11 +78,11 @@
                 <hr>
                 <quill-editor 
                     v-model="newAnswer"
-                    class="mt-8" />
+                    class="mt-8 h-64 mb-20" />
                 <div class="pt-4">
                     <button 
                         @click.prevent="postNewAnswer($store.state.question._id)"
-                        class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded text-xs">
+                        class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded text-xs focus:outline-none">
                         Post Your Answer
                     </button>
                 </div>
@@ -121,7 +121,7 @@ export default {
                 questionId,
                 description: this.newAnswer
             })
-            newAnswer = ''
+            this.newAnswer = ''
         },
         upVote(questionId) {
             // console.log(questionId);

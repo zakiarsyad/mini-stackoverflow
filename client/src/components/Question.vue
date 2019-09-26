@@ -34,7 +34,7 @@
                 </h2>
                 <p
                     v-html="question.description"
-                    class="text-sm mb-3"></p>
+                    class="text-sm mb-3 overflow-hidden h-32 w-full"></p>
                 <div class="flex">
                     <div v-for="(tag, index) in question.tags" :key="index">
                         <tag 

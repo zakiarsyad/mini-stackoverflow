@@ -11,6 +11,14 @@ class QuestionController {
             .catch(next)
     }
 
+    static getTop (req, res, next) {
+        Question.find().populate({path: 'answer', populate: {path: 'userId', model:'User'}}).populate('userId').sort({ updatedAt: -1})
+            .then(questions => {
+                res.status(200).json(questions)
+            })
+            .catch(next)
+    }
+
     static create (req, res, next) {
         const { userId } = req.decode
         const { title, description, tags } = req.body

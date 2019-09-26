@@ -1,5 +1,5 @@
 <template>
-    <div class="p-12 h-screen">
+    <div class="p-12 h-screen mb-24">
         <h1 
             class="text-2xl w-full text-black mb-8">
             Ask a public question

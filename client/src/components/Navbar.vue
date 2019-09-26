@@ -29,7 +29,7 @@
                         type="text">
                 </div>
                 <div class="flex items-center">
-                    <p class="w-32 ml-4" >Hi, {{ $store.state.user.name }}</p>
+                    <p v-if="$store.state.user.name" class="w-32 ml-4" >Hi, {{ $store.state.user.name }}</p>
                     <button 
                         @click.prevent="signout"
                         class="rounded-full hover:bg-gray-300 px-4 py-1 hover:text-black my-1 ml-4 text-xs focus:outline-none">

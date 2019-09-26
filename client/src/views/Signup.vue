@@ -1,5 +1,12 @@
 <template>
     <div class="w-1/4">
+        <div class="flex cursor-pointer justify-center mb-12">
+            <div class="flex justify-center items-center">
+                <i class="fab fa-stack-overflow fa-2x" id="icon"></i>
+                <span class="font-thin text-2xl ml-4">v</span>
+                <span class="font-extrabold text-2xl">overflow</span>
+            </div>
+        </div>
         <form class="bg-white shadow-2xl rounded-lg px-8 pt-6 pb-8 mb-4">
             <div class="mb-4">
                 <label class="block text-black text-sm font-bold mb-2">
@@ -74,5 +81,7 @@ export default {
 </script>
 
 <style>
-
+#icon {
+    color: #f38024;
+}
 </style>

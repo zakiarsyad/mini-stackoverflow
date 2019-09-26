@@ -41,7 +41,21 @@ Response :
 }
 ```
 
-###Loging in a user `POST /users/login`
+Status : `400`
+Response :
+
+```
+{
+    "errors": [
+        "Email is required!",
+        "Email format is invalid!",
+        "Email is already registered!",
+        "Password is required!"
+    ]
+}
+```
+
+### Loging in a user `POST /users/login`
 
 | Route          | HTTP   | Headers | Body                            |                                              |
 | -------------- | ------ | ------- | ------------------------------- | -------------------------------------------- |
@@ -61,7 +75,18 @@ Response :
 }
 ```
 
-###Validation access token  `POST /users/checkToken`
+Status : `403`
+Response :
+
+```
+{
+    "errors": [
+        "Invalid username / password!"
+    ]
+}
+```
+
+### Validation access token  `POST /users/checkToken`
 
 | Route               | HTTP   | Headers        | Body   |      |
 | ------------------- | ------ | -------------- | ------ | ---- |
@@ -79,9 +104,18 @@ Response :
 }
 ```
 
-### 
+Code : `403`  
+Response :
 
-##List of Question router
+```
+{
+		"errors" : [
+				"Access token is invalid!"
+		]
+}
+```
+
+## List of Question router
 
 ###Get all question `GET /questions`
 
@@ -159,6 +193,17 @@ Response :
     "createdAt": "2019-09-25T08:33:59.848Z",
     "updatedAt": "2019-09-25T08:33:59.848Z",
     "__v": 0
+}
+```
+
+Status : `401`
+Response :
+
+```
+{
+    "errors": [
+        "You are not authorized!"
+    ]
 }
 ```
 
@@ -297,6 +342,17 @@ Response :
 }
 ```
 
+Status : `401`
+Response :
+
+```
+{
+    "errors": [
+        "You are not authorized!"
+    ]
+}
+```
+
 ### Delete a question `DELETE /questions/:id`
 
 | Route            | HTTP     | Headers        | Body   | Descrition               |                                           |
@@ -322,6 +378,17 @@ Response :
     "userId" : ""
     "createdAt" : ""
     "updatedAt" : ""
+}
+```
+
+### Status : `401`
+Response :
+
+```
+{
+    "errors": [
+        "You are not authorized!"
+    ]
 }
 ```
 
@@ -449,6 +516,17 @@ Response :
 }
 ```
 
+Status : `401`
+Response :
+
+```
+{
+    "errors": [
+        "You are not authorized!"
+    ]
+}
+```
+
 ### Delete an answer `DELETE /answers/:id`
 
 | Route          | HTTP     | Headers        | Body   | Descrition             |                                           |
@@ -473,28 +551,13 @@ Response :
 }
 ```
 
-### 
+Status : `401`
+Response :
 
-### MODEL
-
-1. User
-   - name
-   - email
-   - password
-   - Watch
-2. Question
-   - title
-   - description
-   - upvote
-   - downvote
-   - answer
-   - userId
-   - timestamp
-   - Tag
-3. Answer
-   - title
-   - description
-   - upvote
-   - downvote
-   - userId
-   - timestamp
+```
+{
+    "errors": [
+        "You are not authorized!"
+    ]
+}
+```

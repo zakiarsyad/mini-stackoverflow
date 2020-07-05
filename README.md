@@ -1,6 +1,6 @@
 # mini-stackoverflow
 
-Mini clone of stackoverflow, build with Vue.js for the front-end and Node.js for backend
+Mini clone of stackoverflow built using Vue.js, Node.js and Mongoose
 
 
 
